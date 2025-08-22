@@ -1,0 +1,264 @@
+/*
+Liora for Typora
+GitHub: https://github.com/rokcso/typora-liora
+Author: https://rokcso.com
+*/
+
+:root {
+    --text-color: #424B5D;
+    --heading-color: #232323;
+    --accent: #ab1942;
+    --muted: #888;
+    --code-bg: rgb(255, 218, 169);
+    --table-border: #ddd;
+}
+
+/* 基础排版 */
+html,
+body {
+    background: #fff;
+    color: var(--text-color);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+#write {
+    margin: 0 8px;
+    word-spacing: 3px;
+    letter-spacing: 1px;
+    font-family: "Futura-Medium", Futura, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+}
+
+/* 段落 */
+#write p {
+    margin: 1.5em 0;
+    padding: 0;
+    line-height: 1.8em;
+    color: var(--text-color);
+    font-size: 16px;
+    text-align: justify;
+}
+
+#write p strong,
+#write li strong {
+    color: var(--text-color);
+}
+
+/* 标题 */
+#write h1 {
+    font-size: 2em;
+    line-height: 1.1em;
+    padding-bottom: 10px;
+    margin-bottom: 4px;
+    color: var(--heading-color);
+    font-weight: 700;
+    font-family: "Futura-Medium", Futura, sans-serif;
+}
+
+#write h2,
+#write h3,
+#write h4,
+#write h5,
+#write h6 {
+    line-height: 1.5em;
+    margin-top: 2.2em;
+    margin-bottom: 4px;
+    font-family: "Futura-Medium", Futura, sans-serif;
+    color: var(--heading-color);
+}
+
+#write h2 {
+    margin-bottom: 35px;
+}
+
+/* 用边线效果模拟原 h3 span 的样式 */
+#write h3 {
+    line-height: 1.4;
+    padding-top: 10px;
+    margin: 10px 0 5px;
+    color: var(--heading-color);
+    font-weight: 700;
+    font-size: 1em;
+    padding-left: 20px;
+    border-left: 3px solid var(--accent);
+}
+
+/* 引用 */
+#write blockquote {
+    border-left: 4px solid #ddd !important;
+    background: none !important;
+    margin: 1em 0;
+    padding: 0 1em;
+}
+
+#write blockquote p {
+    color: var(--text-color) !important;
+    background: none !important;
+}
+
+#write blockquote li,
+#write blockquote section {
+    color: var(--muted) !important;
+    font-size: 15px;
+}
+
+/* 链接 */
+#write a {
+    border: none;
+    color: var(--accent);
+    font-weight: normal;
+    text-decoration: underline;
+}
+
+#write a:hover {
+    color: var(--accent);
+    text-decoration: underline;
+}
+
+/* 列表 */
+#write ul {
+    color: var(--heading-color);
+}
+
+#write ol {
+    color: var(--text-color);
+    font-family: "Futura-Medium", Futura, sans-serif;
+}
+
+/* 列表内容补充（兼容某些导出结构） */
+#write li>p,
+#write li section {
+    color: var(--text-color);
+    font-family: "Futura-Medium", Futura, sans-serif;
+}
+
+/* 强调、斜体、删除线 */
+#write strong {
+    font-weight: bolder;
+}
+
+#write em {
+    font-style: italic;
+}
+
+#write strong em,
+#write em strong {
+    font-weight: bolder;
+    font-style: italic;
+}
+
+#write del {
+    color: var(--accent);
+}
+
+/* 分隔线 */
+#write hr {
+    border: 0;
+    border-top: 1px solid #ddd;
+    margin: 20px 100px;
+}
+
+/* 图片与说明 */
+#write img {
+    display: block;
+    margin: 5px auto;
+    max-width: 100%;
+    border-radius: 3px;
+    border: none;
+}
+
+#write figure>figcaption,
+#write .md-image>.md-meta {
+    margin-top: 10px;
+    color: var(--muted);
+    font-size: 14px;
+    text-align: center;
+}
+
+/* 行内代码 */
+#write p code,
+#write li code,
+#write td code {
+    color: #232323;
+    background-color: var(--code-bg);
+    font-family: ui-monospace, SFMono-Regular, Monaco, Menlo, Consolas, "Liberation Mono", "Courier New", monospace;
+    border-radius: 0;
+    font-size: 0.95em;
+    padding: 0.1em 0.3em;
+}
+
+/* 代码块（保留默认换行行为，可按需扩展） */
+#write pre code,
+#write .md-fences code {
+    font-family: ui-monospace, SFMono-Regular, Monaco, Menlo, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+/* 表格 */
+#write table {
+    font-family: "Futura-Medium", Futura, sans-serif;
+    font-weight: normal;
+    color: var(--heading-color);
+    border-collapse: collapse;
+}
+
+#write table th,
+#write table td {
+    text-align: center;
+    border: 1px solid var(--table-border);
+    padding: 5px 10px;
+    font-size: 16px;
+}
+
+/* 脚注（兼容 Typora 与导出） */
+#write .footnote-word,
+.footnote-word {
+    color: var(--accent);
+    padding: 3px;
+    font-weight: normal;
+}
+
+#write .footnote-ref,
+.footnote-ref,
+sup.md-footnote>a {
+    color: var(--accent);
+    margin: 2px;
+    padding: 3px;
+    text-decoration: none;
+}
+
+#write .footnotes-sep:before,
+#write .footnotes:before {
+    content: "参考资料";
+    display: block;
+    margin: 30px 0 15px 0;
+    font-weight: 800;
+    color: var(--heading-color);
+}
+
+/* 公式（MathJax） */
+#write .mathjax-block,
+#write .md-math-block {
+    overflow-x: auto;
+}
+
+#write .mathjax-block svg,
+#write .md-math-block svg {
+    max-width: 300%;
+}
+
+#write .mathjax-inline,
+#write .md-inline-math {
+    vertical-align: baseline;
+}
+
+/* 其他结构的兜底 */
+#write section {
+    color: var(--text-color);
+    font-family: "Futura-Medium", Futura, sans-serif;
+}
+
+/* 额外可选：聚焦时标题、段落的轻微高亮（可按需移除）
+    .md-focus .md-heading,
+    .md-focus p {
+    outline: none;
+    } */
