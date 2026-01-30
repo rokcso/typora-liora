@@ -38,7 +38,7 @@ Inspired by: WeChat Dark Mode Guidelines
   /* ========== 排版参数（基于微信规范）========== */
   --letter-spacing: 1px; /* 字间距 */
   --line-height: 1.8em; /* 行间距 */
-  --paragraph-spacing: 3em; /* 段间距 */
+  --paragraph-spacing: 1.2em; /* 段间距 */
   --font-size-base: 16px; /* 基础字号 */
   --margin-side: 10px; /* 两端留白 */
 
@@ -201,6 +201,11 @@ body {
   font-weight: 700;
 }
 
+#write h2::before {
+  content: "## ";
+  color: var(--accent);
+}
+
 #write h2 span {
   color: var(--heading-color);
 }
@@ -210,11 +215,15 @@ body {
   font-size: 1.25em;
   line-height: 1.4;
   padding-top: 10px;
-  padding-left: 20px;
+  padding-left: 0;
   margin: 10px 0 5px;
   color: var(--heading-color);
-  border-left: 3px solid var(--accent);
   font-weight: 700;
+}
+
+#write h3::before {
+  content: "### ";
+  color: var(--accent);
 }
 
 #write h3 span {
