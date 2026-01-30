@@ -5,18 +5,34 @@ Author: https://rokcso.com
 */
 
 :root {
+    /* Typora standard variables */
+    --bg-color: #ffffff;
     --text-color: #424B5D;
+    --md-char-color: #C7C5C5;
+    --meta-content-color: #5b808d;
+    --side-bar-bg-color: var(--bg-color);
+    --item-hover-bg-color: rgba(229, 229, 229, 0.59);
+    --active-file-bg-color: #eee;
+    --active-file-text-color: inherit;
+    --window-border: 1px solid #eee;
+
+    /* Liora theme custom variables */
     --heading-color: #232323;
     --accent: #ab1942;
+    --accent-hover: #007ffc;
     --muted: #888;
     --code-bg: rgb(255, 218, 169);
     --table-border: #ddd;
 }
 
 /* 基础排版 */
+html {
+    font-size: 14px; /* Required for user custom font size to work */
+}
+
 html,
 body {
-    background: #fff;
+    background: var(--bg-color);
     color: var(--text-color);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -31,11 +47,11 @@ body {
 
 /* 段落 */
 #write p {
-    margin: 1.5em 0;
+    margin: 1.5rem 0;
     padding: 0;
-    line-height: 1.8em;
+    line-height: 1.8;
     color: var(--text-color);
-    font-size: 16px;
+    font-size: 1rem;
     text-align: justify;
 }
 
@@ -47,9 +63,9 @@ body {
 /* 标题 */
 #write h1 {
     font-size: 2em;
-    line-height: 1.1em;
-    padding-bottom: 10px;
-    margin-bottom: 4px;
+    line-height: 1.1;
+    padding-bottom: 0.714rem;
+    margin-bottom: 0.286rem;
     color: var(--heading-color);
     font-weight: 700;
     font-family: "Futura-Medium", Futura, sans-serif;
@@ -60,26 +76,26 @@ body {
 #write h4,
 #write h5,
 #write h6 {
-    line-height: 1.5em;
-    margin-top: 2.2em;
-    margin-bottom: 4px;
+    line-height: 1.5;
+    margin-top: 2.2rem;
+    margin-bottom: 0.286rem;
     font-family: "Futura-Medium", Futura, sans-serif;
     color: var(--heading-color);
 }
 
 #write h2 {
-    margin-bottom: 35px;
+    margin-bottom: 2.5rem;
 }
 
 /* 用边线效果模拟原 h3 span 的样式 */
 #write h3 {
     line-height: 1.4;
-    padding-top: 10px;
-    margin: 10px 0 5px;
+    padding-top: 0.714rem;
+    margin: 0.714rem 0 0.357rem;
     color: var(--heading-color);
     font-weight: 700;
     font-size: 1em;
-    padding-left: 20px;
+    padding-left: 1.429rem;
     border-left: 3px solid var(--accent);
 }
 
@@ -87,8 +103,8 @@ body {
 #write blockquote {
     border-left: 4px solid #ddd !important;
     background: none !important;
-    margin: 1em 0;
-    padding: 0 1em;
+    margin: 1rem 0;
+    padding: 0 1rem;
 }
 
 #write blockquote p {
@@ -99,7 +115,7 @@ body {
 #write blockquote li,
 #write blockquote section {
     color: var(--muted) !important;
-    font-size: 15px;
+    font-size: 1.071rem;
 }
 
 /* 链接 */
@@ -111,7 +127,7 @@ body {
 }
 
 #write a:hover {
-    color: var(--accent);
+    color: var(--accent-hover);
     text-decoration: underline;
 }
 
@@ -155,23 +171,24 @@ body {
 #write hr {
     border: 0;
     border-top: 1px solid #ddd;
-    margin: 20px 100px;
+    margin: 1.429rem 7.143rem;
 }
 
 /* 图片与说明 */
 #write img {
     display: block;
-    margin: 5px auto;
+    margin: 0.357rem auto;
     max-width: 100%;
     border-radius: 3px;
     border: none;
 }
 
-#write figure>figcaption,
+/* 图片描述文字 */
+#write figcaption,
 #write .md-image>.md-meta {
-    margin-top: 10px;
+    margin-top: 0.714rem;
     color: var(--muted);
-    font-size: 14px;
+    font-size: 0.875rem;
     text-align: center;
 }
 
@@ -179,18 +196,18 @@ body {
 #write p code,
 #write li code,
 #write td code {
-    color: #232323;
+    color: var(--heading-color);
     background-color: var(--code-bg);
-    font-family: ui-monospace, SFMono-Regular, Monaco, Menlo, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-family: Monaco, ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", "Courier New", monospace;
     border-radius: 0;
-    font-size: 0.95em;
+    font-size: 1rem;
     padding: 0.1em 0.3em;
 }
 
 /* 代码块（保留默认换行行为，可按需扩展） */
 #write pre code,
 #write .md-fences code {
-    font-family: ui-monospace, SFMono-Regular, Monaco, Menlo, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-family: Monaco, ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
 /* 表格 */
@@ -205,15 +222,15 @@ body {
 #write table td {
     text-align: center;
     border: 1px solid var(--table-border);
-    padding: 5px 10px;
-    font-size: 16px;
+    padding: 0.357rem 0.714rem;
+    font-size: 1rem;
 }
 
 /* 脚注（兼容 Typora 与导出） */
 #write .footnote-word,
 .footnote-word {
     color: var(--accent);
-    padding: 3px;
+    padding: 0.214rem;
     font-weight: normal;
 }
 
@@ -221,8 +238,8 @@ body {
 .footnote-ref,
 sup.md-footnote>a {
     color: var(--accent);
-    margin: 2px;
-    padding: 3px;
+    margin: 0.143rem;
+    padding: 0.214rem;
     text-decoration: none;
 }
 
@@ -230,7 +247,7 @@ sup.md-footnote>a {
 #write .footnotes:before {
     content: "参考资料";
     display: block;
-    margin: 30px 0 15px 0;
+    margin: 2.143rem 0 1.071rem 0;
     font-weight: 800;
     color: var(--heading-color);
 }
@@ -262,3 +279,38 @@ sup.md-footnote>a {
     .md-focus p {
     outline: none;
     } */
+
+/* 打印样式 */
+@media print {
+    .typora-export * {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    .typora-export #write {
+        color: var(--text-color);
+    }
+
+    .typora-export #write h1,
+    .typora-export #write h2,
+    .typora-export #write h3,
+    .typora-export #write h4,
+    .typora-export #write h5,
+    .typora-export #write h6 {
+        color: var(--heading-color);
+    }
+
+    .typora-export #write a {
+        color: var(--accent);
+    }
+
+    .typora-export #write code {
+        background-color: var(--code-bg);
+        -webkit-print-color-adjust: exact;
+    }
+
+    .typora-export #write table th,
+    .typora-export #write table td {
+        border: 1px solid var(--table-border);
+    }
+}
