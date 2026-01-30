@@ -1,29 +1,52 @@
 /*
-Liora for Typora (Optimized & Enhanced)
+Liora for Typora (Ultimate Edition with Dark Mode)
 GitHub: https://github.com/rokcso/typora-liora
 Author: https://rokcso.com
-Inspired by: WeChat Nice Editor Theme
+Optimized for: Light & Dark Mode Adaptive Design
+Inspired by: WeChat Dark Mode Guidelines
 */
 
 :root {
-  /* 核心色彩变量 */
+  /* ========== 浅色模式颜色 ========== */
   --bg-color: #ffffff;
-  --text-color: #424b5d;
-  --heading-color: #232323;
-  --accent: #ab1942;
-  --accent-hover: #c61f4e;
-  --muted: #888;
-  --code-bg: rgba(175, 184, 193, 0.2);
-  --code-block-bg: #f6f8fa;
-  --code-block-border: #d0d7de;
-  --table-border: #ddd;
+  --text-color: #3f3f3f; /* 主文本 - 深色模式转为 #b0b0b0 */
+  --text-secondary: #888888; /* 次要文本 - 深色模式转为 #777777 */
+  --heading-color: #232323; /* 标题 - 深色模式转为 #c3c3c3 */
+  --accent: #ab1942; /* 主题色 - 保持不变（彩色） */
+  --accent-hover: #c61f4e; /* 主题色悬停 */
+
+  /* 代码相关 */
+  --code-text: #2f2f2f; /* 代码文字 */
+  --code-bg: rgba(175, 184, 193, 0.15); /* 行内代码背景 */
+  --code-block-bg: #f6f8fa; /* 代码块背景 */
+  --code-block-border: #e1e4e8; /* 代码块边框 */
+
+  /* 界面元素 */
+  --border-color: #e8e8e8; /* 边框 */
+  --table-border: #dddddd; /* 表格边框 */
+  --blockquote-border: #dddddd; /* 引用边框 */
+  --hr-color: #eeeeee; /* 分割线 */
+
+  /* 背景色 */
+  --bg-secondary: #f8f9fa; /* 次要背景 */
+  --bg-hover: #f0f0f0; /* 悬停背景 */
+
+  /* 特殊颜色 */
   --md-char-color: #c7c5c5;
   --meta-content-color: #5b808d;
 
+  /* ========== 排版参数（基于微信规范）========== */
+  --letter-spacing: 1px; /* 字间距 */
+  --line-height: 1.8em; /* 行间距 */
+  --paragraph-spacing: 3em; /* 段间距 */
+  --font-size-base: 16px; /* 基础字号 */
+  --margin-side: 10px; /* 两端留白 */
+
   /* 字体变量 */
   --font-family-base:
-    "Futura-Medium", Futura, "Segoe UI", Roboto, "Helvetica Neue", Arial,
-    "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    Optima-Regular, "Futura-Medium", Futura, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB",
+    "Microsoft YaHei", sans-serif;
   --font-family-code:
     Monaco, ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
     "Liberation Mono", "Courier New", monospace;
@@ -31,9 +54,45 @@ Inspired by: WeChat Nice Editor Theme
   /* Typora 界面变量 */
   --side-bar-bg-color: var(--bg-color);
   --item-hover-bg-color: rgba(229, 229, 229, 0.59);
-  --active-file-bg-color: #eee;
+  --active-file-bg-color: #eeeeee;
   --active-file-text-color: inherit;
-  --window-border: 1px solid #eee;
+  --window-border: 1px solid var(--border-color);
+}
+
+/* ========== 深色模式颜色（遵循微信适配规范）========== */
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* 背景 */
+    --bg-color: #191919;
+    --bg-secondary: #232323;
+    --bg-hover: #2a2a2a;
+
+    /* 文字（根据微信反转规则）*/
+    --text-color: #b0b0b0; /* #3f3f3f 的反转 */
+    --text-secondary: #777777; /* #888888 保持 */
+    --heading-color: #c3c3c3; /* #232323 的反转 */
+
+    /* 主题色保持不变（彩色不转换）*/
+    --accent: #ab1942;
+    --accent-hover: #c61f4e;
+
+    /* 代码 */
+    --code-text: #d0d0d0;
+    --code-bg: rgba(255, 255, 255, 0.1);
+    --code-block-bg: #2a2a2a;
+    --code-block-border: #3a3a3a;
+
+    /* 界面元素 */
+    --border-color: #333333;
+    --table-border: #3a3a3a;
+    --blockquote-border: #3a3a3a;
+    --hr-color: #2a2a2a;
+
+    /* Typora 界面 */
+    --side-bar-bg-color: #1e1e1e;
+    --item-hover-bg-color: rgba(255, 255, 255, 0.05);
+    --active-file-bg-color: #2a2a2a;
+  }
 }
 
 /* ========== 基础设置 ========== */
@@ -47,50 +106,60 @@ body {
   color: var(--text-color);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
 
 #write {
-  margin: 0 8px;
-  word-spacing: 3px;
-  letter-spacing: 1px;
-  font-family: var(--font-family-base);
-  max-width: 860px;
+  margin: 0 var(--margin-side);
   padding: 20px 30px;
+  max-width: 860px;
+  word-spacing: 3px;
+  letter-spacing: var(--letter-spacing);
+  font-family: var(--font-family-base);
 }
 
 /* ========== 段落与文本 ========== */
 #write p {
-  margin: 1.5em 0;
+  margin: var(--paragraph-spacing) 0;
   padding: 0;
-  line-height: 1.8em;
+  line-height: var(--line-height);
   color: var(--text-color);
-  font-size: 16px;
+  font-size: var(--font-size-base);
   font-family: var(--font-family-base);
   text-align: justify;
 }
 
 #write p strong {
-  color: var(--text-color);
+  color: var(--heading-color);
   font-weight: bolder;
 }
 
 #write strong {
   font-weight: bolder;
-  color: var(--text-color);
+  color: var(--heading-color);
 }
 
 #write em {
   font-style: italic;
+  color: var(--text-color);
 }
 
 #write strong em,
 #write em strong {
   font-weight: bolder;
   font-style: italic;
+  color: var(--heading-color);
 }
 
 #write del {
   color: var(--accent);
+}
+
+#write u {
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
 }
 
 /* ========== 标题系统 ========== */
@@ -104,7 +173,7 @@ body {
   font-family: var(--font-family-base);
   line-height: 1.5em;
   margin-top: 2.2em;
-  margin-bottom: 4px;
+  margin-bottom: 0.8em;
   font-weight: 600;
 }
 
@@ -113,9 +182,10 @@ body {
   font-size: 2em;
   line-height: 1.1em;
   padding-bottom: 10px;
-  margin-bottom: 4px;
+  margin-bottom: 0.5em;
   color: var(--heading-color);
   font-weight: 700;
+  border-bottom: 2px solid var(--border-color);
 }
 
 #write h1 span {
@@ -126,8 +196,9 @@ body {
 /* 二级标题 */
 #write h2 {
   font-size: 1.5em;
-  margin-bottom: 35px;
+  margin-bottom: 1.5em;
   color: var(--heading-color);
+  font-weight: 700;
 }
 
 #write h2 span {
@@ -156,39 +227,44 @@ body {
 #write h4 {
   font-size: 1.125em;
   color: var(--heading-color);
+  font-weight: 600;
 }
 
 /* 五级标题 */
 #write h5 {
   font-size: 1em;
   color: var(--heading-color);
+  font-weight: 600;
 }
 
 /* 六级标题 */
 #write h6 {
   font-size: 0.875em;
-  color: var(--muted);
+  color: var(--text-secondary);
+  font-weight: 600;
 }
 
 /* ========== 引用块 ========== */
 #write blockquote {
-  border-left: 4px solid #ddd !important;
-  background: none !important;
-  margin: 1em 0;
-  padding: 0 1em;
+  border-left: 4px solid var(--blockquote-border) !important;
+  background: var(--bg-secondary) !important;
+  margin: 1.5em 0;
+  padding: 0.8em 1em;
+  border-radius: 4px;
 }
 
 #write blockquote p {
   color: var(--text-color) !important;
-  background: none !important;
+  background: transparent !important;
   font-size: 15px;
-  line-height: 1.8em;
+  line-height: var(--line-height);
+  margin: 0.5em 0;
 }
 
 #write blockquote li,
 #write blockquote section {
-  color: var(--muted) !important;
-  background: none !important;
+  color: var(--text-secondary) !important;
+  background: transparent !important;
   font-size: 15px;
 }
 
@@ -196,6 +272,7 @@ body {
 #write a {
   color: var(--accent);
   text-decoration: underline;
+  text-decoration-color: var(--accent);
   font-weight: normal;
   border: none;
   transition: all 0.2s ease;
@@ -203,24 +280,25 @@ body {
 
 #write a:hover {
   color: var(--accent-hover);
-  text-decoration: underline;
+  text-decoration-color: var(--accent-hover);
 }
 
 /* ========== 列表 ========== */
 #write ul {
   color: var(--heading-color);
   padding-left: 2rem;
-  margin: 1rem 0;
+  margin: 1.5rem 0;
 }
 
 #write ol {
   color: var(--text-color);
   padding-left: 2rem;
-  margin: 1rem 0;
+  margin: 1.5rem 0;
 }
 
 #write li {
   margin: 0.5rem 0;
+  line-height: var(--line-height);
 }
 
 #write li section,
@@ -232,25 +310,29 @@ body {
 /* ========== 分隔线 ========== */
 #write hr {
   border: 0;
-  border-top: 1px solid #ddd;
-  margin: 20px 100px;
+  border-top: 1px solid var(--hr-color);
+  margin: 2em 100px;
 }
 
-/* ========== 图片 ========== */
+/* ========== 图片（优化透明背景支持）========== */
 #write img {
   display: block;
-  margin: 5px auto;
+  margin: 1em auto;
   max-width: 100%;
-  border-radius: 3px;
+  border-radius: 4px;
   border: none;
+  /* 优化透明 PNG 在深色模式下的显示 */
+  background-color: transparent;
 }
 
+/* 图片说明 */
 #write figcaption,
 #write .md-image > .md-meta {
   margin-top: 10px;
-  color: var(--muted);
+  color: var(--text-secondary);
   font-size: 14px;
   text-align: center;
+  font-style: italic;
 }
 
 /* ========== 代码样式 ========== */
@@ -265,12 +347,12 @@ body {
 #write h4 code,
 #write h5 code,
 #write h6 code {
-  color: var(--heading-color);
+  color: var(--code-text);
   background-color: var(--code-bg);
   font-family: var(--font-family-code);
   font-size: 0.9em;
-  padding: 0.2em 0.4em;
-  border-radius: 6px;
+  padding: 0.2em 0.5em;
+  border-radius: 4px;
   border: none;
 }
 
@@ -297,12 +379,12 @@ body {
 #write .md-fences > div > div,
 #write .md-fences code,
 #write pre.md-fences code {
-  background: none !important;
+  background: transparent !important;
   border: none !important;
   padding: 0 !important;
   margin: 0 !important;
   box-shadow: none !important;
-  color: #24292f !important;
+  color: var(--code-text) !important;
 }
 
 /* 代码块文本样式 */
@@ -320,7 +402,7 @@ body {
   border-radius: 4px;
   padding: 2px 6px;
   font-size: 12px;
-  color: var(--muted);
+  color: var(--text-secondary);
 }
 
 /* 普通 pre 标签 */
@@ -334,15 +416,15 @@ body {
 }
 
 #write pre:not(.md-fences):not(.md-meta-block) code {
-  background: none !important;
-  color: #24292f;
+  background: transparent !important;
+  color: var(--code-text);
   font-family: var(--font-family-code);
 }
 
 /* YAML 元数据块 */
 #write pre.md-meta-block {
-  background: #f8f9fa !important;
-  border: 1px solid #e9ecef !important;
+  background: var(--bg-secondary) !important;
+  border: 1px solid var(--border-color) !important;
   border-left: 3px solid var(--accent) !important;
   padding: 1rem;
   margin: 1rem 0 1.5rem;
@@ -352,7 +434,7 @@ body {
 }
 
 #write pre.md-meta-block code {
-  background: none !important;
+  background: transparent !important;
   padding: 0;
   color: var(--meta-content-color);
   font-family: var(--font-family-code);
@@ -363,7 +445,7 @@ body {
   border-collapse: collapse;
   width: 100%;
   margin: 1.5rem 0;
-  border-radius: 3px;
+  border-radius: 4px;
   overflow: hidden;
   font-family: var(--font-family-base);
   font-weight: normal;
@@ -371,7 +453,7 @@ body {
 }
 
 #write table thead {
-  background-color: #f8f9fa;
+  background-color: var(--bg-secondary);
 }
 
 #write table th {
@@ -379,29 +461,29 @@ body {
   color: var(--heading-color);
   border: 1px solid var(--table-border);
   border-bottom: 2px solid var(--accent);
-  padding: 0.714rem 1rem;
+  padding: 0.8em 1em;
   text-align: center;
-  font-size: 1rem;
+  font-size: var(--font-size-base);
 }
 
 #write table td {
   border: 1px solid var(--table-border);
-  padding: 0.714rem 1rem;
+  padding: 0.8em 1em;
   color: var(--text-color);
   text-align: center;
-  font-size: 1rem;
+  font-size: var(--font-size-base);
 }
 
 #write table tr:nth-child(even) {
-  background-color: #fafafa;
+  background-color: var(--bg-secondary);
 }
 
 #write table tr:nth-child(odd) {
-  background-color: #fff;
+  background-color: var(--bg-color);
 }
 
 #write table tr:hover {
-  background-color: #f0f0f0;
+  background-color: var(--bg-hover);
 }
 
 #write table tr:hover td {
@@ -427,6 +509,7 @@ body {
 #write .md-task-list-item > input {
   margin-left: -1.5em;
   margin-top: 0.3em;
+  accent-color: var(--accent);
 }
 
 #write .task-list-item {
@@ -462,7 +545,7 @@ sup.md-footnote > a {
 }
 
 #write .footnotes {
-  border-top: 2px solid #eee;
+  border-top: 2px solid var(--border-color);
   padding-top: 1.5rem;
   margin-top: 3rem;
 }
@@ -476,7 +559,7 @@ sup.md-footnote > a {
 }
 
 #write .footnote-item p em {
-  color: var(--muted);
+  color: var(--text-secondary);
 }
 
 /* ========== 数学公式 ========== */
@@ -503,7 +586,7 @@ sup.md-footnote > a {
 #write .md-toc {
   margin: 2rem 0;
   padding: 1.5rem;
-  background-color: #f8f9fa;
+  background-color: var(--bg-secondary);
   border-radius: 6px;
   border-left: 3px solid var(--accent);
 }
@@ -527,7 +610,7 @@ sup.md-footnote > a {
 
 /* ========== 高亮标记 ========== */
 #write mark {
-  background-color: #fff3cd;
+  background-color: rgba(255, 208, 0, 0.4);
   color: var(--text-color);
   padding: 0.1em 0.3em;
   border-radius: 2px;
@@ -535,22 +618,16 @@ sup.md-footnote > a {
 
 /* ========== 键盘按键 ========== */
 #write kbd {
-  background-color: #f6f8fa;
-  border: 1px solid #d0d7de;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
   border-radius: 3px;
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
   color: var(--heading-color);
   display: inline-block;
   font-family: var(--font-family-code);
   font-size: 0.875em;
   padding: 0.1em 0.4em;
   vertical-align: baseline;
-}
-
-/* ========== 通用 section 样式 ========== */
-#write section {
-  color: var(--text-color);
-  font-family: var(--font-family-base);
 }
 
 /* ========== Typora 源代码模式优化 ========== */
@@ -561,7 +638,7 @@ sup.md-footnote > a {
 
 .CodeMirror {
   background-color: var(--code-block-bg);
-  color: #24292f;
+  color: var(--code-text);
 }
 
 .CodeMirror-gutters {
@@ -570,69 +647,71 @@ sup.md-footnote > a {
 }
 
 .CodeMirror-linenumber {
-  color: var(--muted);
+  color: var(--text-secondary);
+}
+
+/* ========== 选中文本 ========== */
+::selection {
+  background-color: var(--accent);
+  color: #ffffff;
+}
+
+::-moz-selection {
+  background-color: var(--accent);
+  color: #ffffff;
+}
+
+/* ========== 滚动条优化 ========== */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
 }
 
 /* ========== 打印优化 ========== */
 @media print {
+  :root {
+    /* 打印时强制使用浅色 */
+    --bg-color: #ffffff;
+    --text-color: #3f3f3f;
+    --heading-color: #232323;
+    --code-block-bg: #f6f8fa;
+  }
+
   .typora-export * {
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }
 
   .typora-export #write {
-    color: var(--text-color);
     max-width: 100%;
     padding: 1cm;
   }
 
   .typora-export #write h1,
   .typora-export #write h2,
-  .typora-export #write h3,
-  .typora-export #write h4,
-  .typora-export #write h5,
-  .typora-export #write h6 {
-    color: var(--heading-color);
-    page-break-after: avoid;
-  }
-
-  .typora-export #write a {
-    color: var(--accent);
-    text-decoration: underline;
-  }
-
-  .typora-export #write code {
-    background-color: var(--code-bg);
-  }
-
-  .typora-export #write pre,
-  .typora-export #write .md-fences {
-    background-color: var(--code-block-bg);
-    border: 1px solid var(--code-block-border);
-    page-break-inside: avoid;
-  }
-
-  .typora-export #write table {
-    page-break-inside: avoid;
-  }
-
-  .typora-export #write img {
-    max-width: 100%;
-    page-break-inside: avoid;
-  }
-
-  .typora-export #write blockquote {
-    page-break-inside: avoid;
-  }
-
-  /* 避免孤立标题 */
-  .typora-export #write h1,
-  .typora-export #write h2,
   .typora-export #write h3 {
     page-break-after: avoid;
   }
 
-  /* 避免在列表项中分页 */
+  .typora-export #write table,
+  .typora-export #write pre,
+  .typora-export #write blockquote {
+    page-break-inside: avoid;
+  }
+
   .typora-export #write li {
     page-break-inside: avoid;
   }
@@ -641,8 +720,8 @@ sup.md-footnote > a {
 /* ========== 响应式优化 ========== */
 @media screen and (max-width: 768px) {
   #write {
-    margin: 0 4px;
-    padding: 1rem;
+    margin: 0 5px;
+    padding: 15px 20px;
     word-spacing: 2px;
     letter-spacing: 0.5px;
   }
@@ -650,6 +729,7 @@ sup.md-footnote > a {
   #write p {
     font-size: 15px;
     line-height: 1.7em;
+    margin: 2em 0;
   }
 
   #write h1 {
@@ -658,7 +738,7 @@ sup.md-footnote > a {
 
   #write h2 {
     font-size: 1.5em;
-    margin-bottom: 25px;
+    margin-bottom: 1.2em;
   }
 
   #write h3 {
@@ -669,39 +749,19 @@ sup.md-footnote > a {
   #write pre,
   #write .md-fences {
     padding: 12px;
-    font-size: 12px;
+    font-size: 13px;
   }
 
   #write table {
-    font-size: 0.875rem;
+    font-size: 14px;
   }
 
   #write table th,
   #write table td {
-    padding: 0.5rem 0.75rem;
+    padding: 0.6em 0.8em;
   }
 
   #write hr {
-    margin: 15px 20px;
+    margin: 1.5em 20px;
   }
-}
-
-/* ========== 深色模式支持（可选） ========== */
-@media (prefers-color-scheme: dark) {
-  /* 如需支持深色模式，取消下面注释 */
-  /*
-    :root {
-        --bg-color: #1e1e1e;
-        --text-color: #d4d4d4;
-        --heading-color: #e8e8e8;
-        --code-block-bg: #2d2d2d;
-        --code-block-border: #404040;
-        --table-border: #404040;
-    }
-
-    html, body {
-        background: var(--bg-color);
-        color: var(--text-color);
-    }
-    */
 }
