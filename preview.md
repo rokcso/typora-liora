@@ -156,7 +156,7 @@ function applyTheme(config) {
 
 访问 [Liora GitHub](https://github.com/rokcso/typora-liora) 了解更多信息。
 
-或者访问 [作者主页](https://rokcso.com)。
+或者访问 [作者 主页](https://rokcso.com)。
 
 [悬停查看颜色变化效果](https://typora.io)
 
