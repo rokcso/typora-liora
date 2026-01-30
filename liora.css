@@ -236,14 +236,65 @@ body {
     font-weight: normal;
     color: var(--heading-color);
     border-collapse: collapse;
+    width: 100%;
+    margin: 1.5rem 0;
+    overflow: hidden;
+    border-radius: 3px;
 }
 
-#write table th,
-#write table td {
-    text-align: center;
+/* 表头 */
+#write table thead {
+    background-color: #f8f9fa;
+}
+
+#write table th {
+    font-weight: 700;
+    color: var(--heading-color);
+    text-align: left;
     border: 1px solid var(--table-border);
-    padding: 0.357rem 0.714rem;
+    border-bottom: 2px solid var(--accent);
+    padding: 0.714rem 1rem;
     font-size: 1rem;
+}
+
+/* 表格单元格 */
+#write table td {
+    text-align: left;
+    border: 1px solid var(--table-border);
+    padding: 0.714rem 1rem;
+    font-size: 1rem;
+    color: var(--text-color);
+}
+
+/* 斑马纹 - 偶数行 */
+#write table tr:nth-child(even) {
+    background-color: #fafafa;
+}
+
+/* 斑马纹 - 奇数行 */
+#write table tr:nth-child(odd) {
+    background-color: #fff;
+}
+
+/* 鼠标悬停效果 */
+#write table tr:hover {
+    background-color: #f0f0f0;
+}
+
+#write table tr:hover td {
+    color: var(--heading-color);
+}
+
+/* 第一列（通常是序号或标题）居中 */
+#write table tr td:first-child,
+#write table tr th:first-child {
+    text-align: center;
+}
+
+/* 数字列居中 */
+#write table td[align="center"],
+#write table th[align="center"] {
+    text-align: center;
 }
 
 /* 脚注（兼容 Typora 与导出） */
